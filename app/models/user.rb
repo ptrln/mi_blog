@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :user_following, class_name: "UserFollow", foreign_key: :follower_id, :dependent => :destroy
   has_many :following, through: :user_following, source: :user
 
-  validates :email, :username, presence: true
+  validates :email, :username, uniqueness: true, presence: true
 
   def to_param
     username
