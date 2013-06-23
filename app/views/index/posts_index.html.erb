@@ -1,0 +1,43 @@
+<div class='row-fluid'>
+  <div class='span3'>
+    <div>
+      You are currently following:
+      <div>
+        <% if current_user.following.count == 0 %>
+          No one
+        <% end %>
+        <% current_user.following.each do |following| %>
+          <%= render following %>
+        <% end %>
+      </div>
+    </div>
+    <br>
+    <div>
+      Followers:
+      <div>
+        <% if current_user.followers.count == 0 %>
+          No one
+        <% end %>
+        <% current_user.followers.each do |follower| %>
+          <%= render follower %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class='span9'>
+    <div class='well'>
+      <%= render :partial => "posts/form" %>
+    </div>
+    <div>
+      <%= button_to "refresh" %>
+    </div>
+    <% @posts.each do |post| %>
+      <%= render post %>
+    <% end %>
+    <% if @posts.count == 0 %>
+      No posts yet...
+    <% end %>
+  </div>
+
+</div>

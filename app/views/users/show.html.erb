@@ -1,0 +1,62 @@
+<div class='row-fluid'>
+  <legend>
+    <%= @user.username %> 
+    <small>
+      <%= @user.email %>
+      <span class='pull-right'>
+        join <%= time_ago_in_words(@user.created_at) %> ago
+      </span>
+    </small>
+
+  </legend>
+</div>
+<div class='row-fluid'>
+  <div class='span3'>
+    <div>
+      Posts: <%= @user.posts.count %>
+    </div>
+    <br>
+    <div>
+      Following (<%= @user.following.count %>)
+      <div>
+        <% @user.following.each do |follower| %>
+          <%= render follower %>
+        <% end %>
+      </div>
+    </div>
+    <br>
+    <div>
+      Followers (<%= @user.followers.count %>)
+      <div>
+        <% @user.followers.each do |follower| %>
+          <%= render follower %>
+        <% end %>
+      </div>
+    </div>
+    <br>
+    <% if user_signed_in? && current_user != @user %>
+      <% if current_user.following_ids.include?(@user.id) %>
+        <%= button_to "Unfollow", follow_user_path(@user), method: :delete, class: "btn" %>
+      <% else %>
+        <%= button_to "Follow", follow_user_path(@user), class: "btn" %>
+      <% end %>
+
+    <% end %>
+  </div>
+
+  <div class='span9'>
+    <% if user_signed_in? && current_user == @user %>
+      <% @post = Post.new %>
+      <div class='well'>
+        <%= render :partial => "posts/form" %>
+      </div>
+    <% end %>
+    <% @user.posts.each do |post| %>
+      <%= render post %>
+    <% end %>
+    <% if @user.posts.count == 0 %>
+      No posts yet...
+    <% end %>
+  </div>
+</div>
+

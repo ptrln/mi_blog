@@ -1,0 +1,12 @@
+<blockquote>
+  <p><%= post.body %></p>
+  <small>by 
+    <%= link_to post.user.username, user_path(post.user) %> 
+    about <%= time_ago_in_words(post.created_at) %> ago
+    <% if user_signed_in? && current_user == post.user %>
+      <%= link_to "edit", edit_post_path(post)%>
+      |
+      <%= link_to "delete", post_path(post), method: :delete %>
+    <% end %>
+  </small>
+</blockquote>
