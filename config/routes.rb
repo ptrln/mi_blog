@@ -9,7 +9,7 @@ Blog::Application.routes.draw do
     resources :posts, path: "p", only: [:show]
   end
 
-  resources :posts, path: "p", only: [:new, :create, :edit, :update, :destroy]
+  resources :posts, path: "p", only: [:index, :new, :create, :edit, :update, :destroy]
 
   root :to => "index#index"
 end

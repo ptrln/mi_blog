@@ -19,6 +19,6 @@ class User < ActiveRecord::Base
   def following_posts
     ids = following_ids << self.id
     p (ids)
-    Post.where("user_id IN (?)", ids).all
+    Post.where("user_id IN (?)", ids)
   end
 end

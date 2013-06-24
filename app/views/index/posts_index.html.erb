@@ -26,18 +26,12 @@
   </div>
 
   <div class='span9'>
-    <div class='well'>
-      <%= render :partial => "posts/form" %>
+    <%= render :partial => "shared/new_post_collapse" %>
+    <br>
+    <button class='btn refresh-btn'>Refresh</button>
+    <div id='posts-list'>
     </div>
-    <div>
-      <%= button_to "refresh" %>
-    </div>
-    <% @posts.each do |post| %>
-      <%= render post %>
-    <% end %>
-    <% if @posts.count == 0 %>
-      No posts yet...
-    <% end %>
+    <button class='btn more-btn'>Load more</button>
   </div>
 
 </div>

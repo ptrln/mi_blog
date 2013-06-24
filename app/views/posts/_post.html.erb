@@ -1,5 +1,7 @@
 <blockquote>
+  <h3><%= post.title %></h3>
   <p><%= simple_format(post.body) %></p>
+  <br>
   <small>by 
     <%= link_to post.user.username, user_path(post.user) %> 
     about <%= time_ago_in_words(post.created_at) %> ago

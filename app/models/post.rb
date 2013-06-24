@@ -1,9 +1,9 @@
 class Post < ActiveRecord::Base
-  attr_accessible :body, :user_id
+  attr_accessible :title, :body, :user_id
 
   belongs_to :user
 
-  validates :user, :body, presence: true
+  validates :title, :user, presence: true
 
   default_scope order('created_at DESC')
 end

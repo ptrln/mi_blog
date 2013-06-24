@@ -47,9 +47,8 @@
   <div class='span9'>
     <% if user_signed_in? && current_user == @user %>
       <% @post = Post.new %>
-      <div class='well'>
-        <%= render :partial => "posts/form" %>
-      </div>
+      <%= render :partial => "shared/new_post_collapse" %>
+      <br>
     <% end %>
     <% @user.posts.each do |post| %>
       <%= render post %>

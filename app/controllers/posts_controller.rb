@@ -1,7 +1,24 @@
 class PostsController < ApplicationController
-  before_filter :authenticate_user!, except: [:index]
+  before_filter :authenticate_user!
   before_filter :authorize_user!, only: [:edit, :update, :destroy]
   
+  def index
+    @posts = current_user.following_posts
+    if (params[:last])
+      @posts = @posts.where("created_at > ?", params[:last])
+    end
+    if (params[:offset])
+      @posts = @posts.offset(params[:offset])
+    end
+    @posts = @posts.limit(2)
+    posts_html = render_to_string :ajax_index, :layout => false
+    render :json => {
+      html: posts_html, 
+      last: @posts.first ? @posts.first.created_at : params[:last],
+      count: @posts.count
+    }
+  end
+
   def show
     @user = User.find_by_username(params[:user_id])
     @post = Post.find(params[:id])
