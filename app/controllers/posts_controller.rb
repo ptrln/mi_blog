@@ -17,7 +17,7 @@ class PostsController < ApplicationController
     render :json => {
       html: posts_html, 
       last: @posts.first ? @posts.first.created_at : params[:last],
-      count: @posts.count
+      more: @posts.count >= POSTS_PER_LOAD
     }
   end
 

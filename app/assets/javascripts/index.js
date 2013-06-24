@@ -19,7 +19,7 @@ $(function() {
       {offset: $("#posts-list blockquote").length}, 
       function(json){
         $("#posts-list").append(json.html);
-        if (json.count > 0) $(".more-btn").show();
+        if (json.more) $(".more-btn").show();
     });
   };
 
