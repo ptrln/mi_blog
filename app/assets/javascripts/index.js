@@ -8,7 +8,6 @@ $(function() {
       function(json){
         $("#posts-list").prepend(json.html);
         latestPost = json.last;
-        console.log(json)
         $(".refresh-btn").show();
     });
   };
@@ -27,5 +26,5 @@ $(function() {
   $(".refresh-btn").on('click', refresh);
   $(".more-btn").on('click', loadMore);
   refresh();
-
+  setInterval(refresh, 30 * 1000);
 });
