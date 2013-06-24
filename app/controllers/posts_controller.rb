@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   def index
     @posts = current_user.following_posts
     if (params[:last] && params[:last].length > 0)
-      @posts = @posts.where("created_at > ?", DateTime.strptime(params[:last]))
+      @posts = @posts.where("created_at > ?", DateTime.strptime(params[:last]) + 1.second)
     end
     if (params[:offset])
       @posts = @posts.offset(params[:offset])
