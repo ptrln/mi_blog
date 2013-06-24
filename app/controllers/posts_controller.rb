@@ -2,6 +2,8 @@ class PostsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :authorize_user!, only: [:edit, :update, :destroy]
   
+  POSTS_PER_LOAD = 3
+
   def index
     @posts = current_user.following_posts
     if (params[:last])
@@ -10,7 +12,7 @@ class PostsController < ApplicationController
     if (params[:offset])
       @posts = @posts.offset(params[:offset])
     end
-    @posts = @posts.limit(2)
+    @posts = @posts.limit(POSTS_PER_LOAD)
     posts_html = render_to_string :ajax_index, :layout => false
     render :json => {
       html: posts_html, 
