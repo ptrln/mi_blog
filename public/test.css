@@ -1,7 +1,24 @@
+body {
+  height: 200px;
+  min-height: 200px;
+}
+
+#content {
+  height: 200px;
+}
+
 #mainpanel {
   padding: 0px;
 }
 
 #pickerComputer {
   padding-top: 0px;
+}
+
+.thumbnail {
+  min-height: 90px;
+}
+
+.center {
+  margin-top: 30px;
 }
