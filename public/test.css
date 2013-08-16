@@ -1,24 +1,24 @@
 body {
-  height: 200px;
-  min-height: 200px;
+  height: 200px !important;
+  min-height: 200px !important;
 }
 
 #content {
-  height: 200px;
+  height: 200px !important;
 }
 
 #mainpanel {
-  padding: 0px;
+  padding: 0px !important;
 }
 
 #pickerComputer {
-  padding-top: 0px;
+  padding-top: 0px !important;
 }
 
-.thumbnail {
-  min-height: 90px;
+#localDragDrop {
+  min-height: 90px !important;
 }
 
-.center {
-  margin-top: 30px;
+#localDragHelp {
+  margin-top: 30px !important;
 }
